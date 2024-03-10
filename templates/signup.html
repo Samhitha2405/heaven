@@ -1,0 +1,84 @@
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-image: url('{% static "images/loginbg.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Josefin Sans;
+        }
+
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            color: black;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+
+        }
+
+        button {
+            background-color: #000000;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-family: Josefin Sans;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+{% if messages.tags %}
+<script>
+    alert("{{message}}")
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<div class="container1">
+    <div class='bodycontainer'>
+        <h1><center>SignUp</center></h1>
+        <form method="post" action="{% url 'signup1' %}">
+            {% csrf_token %}
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter Username"><br>
+            <label>Password</label>
+            <input type="password" name="password"><br>
+            <label>Confirm Password</label>
+            <input type="password" name="password1"><br>
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

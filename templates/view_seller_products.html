@@ -1,0 +1,38 @@
+{% extends 'sellernavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        {% for product_details in product_details_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <img src="{{ product_details.product_image.url }}" class="card-img-top" alt="product image" style="width: 300px; height: 300px; object-fit: contain; transition: transform 0.3s;">
+                        <br><br>
+                        <h5 class="card-title">{{ product_details.product_name }}</h5>
+                        <p class="card-text">{{ product_details.description }}</p>
+                        <p class="card-text">category: {{ product_details.categories }}</p>
+                        <p class="card-text">price: {{ product_details.product_price }}</p>
+                        <button type="button" class="btn btn-warning">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<style>
+    /* Inline CSS for hover effect */
+    .card-img-top:hover {
+        transform: scale(1.1); /* Scale up the image on hover */
+    }
+</style>
+{% endblock %}
+</body>
+</html>

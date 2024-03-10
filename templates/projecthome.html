@@ -1,0 +1,23 @@
+{% extends 'projectnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h1 style="font-family: 'Pacifico', cursive; font-size: 65px; transition: all 0.3s; cursor: pointer;
+        color: black; /* Initial text color */
+        text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); padding: 10px;"
+        onmouseover="this.style.transform='scale(1.1)'; 
+                    this.style.textShadow='0px 5px 15px rgba(0, 0, 0, 0.4)';
+                    this.style.color='#660066';" /* Text color on hover */
+        onmouseout="this.style.transform='';
+                   this.style.textShadow='0px 3px 10px rgba(0, 0, 0, 0.2)';
+                   this.style.color='black';">Heaven</h1>
+</div>
+{% endblock %}
+</body>
+</html>

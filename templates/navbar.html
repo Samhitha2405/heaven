@@ -1,0 +1,179 @@
+{% load static %}
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>SPA</title>
+  <style>
+        .navbar-brand {
+            font-family: 'Pacifico', cursive;
+            font size: 25px;
+
+        }
+    .nav-link {
+            color: black !important;
+        }
+
+        /* Styling for the background color of the links */
+        .nav {
+            background-color: #E3CBBF; /* Adjust the color as needed */
+        }
+.nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body >
+<nav class="navbar navbar-expand-lg" style="background-color:#B76E79;">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand" href="{% url 'projecthome' %}">Heaven</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'myhome' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'mydeals' %}">Today's Deal</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Best Seller</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" href="{% url 'viewproducts' %}">view products</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" href="{% url 'feedback' %}">Feedback</a>
+        </li>
+
+      </ul>
+   <form class="d-flex" action="{% url 'cart' %}" method="get">
+    <button class="btn btn-outline-dark mx-2 login-btn" type="submit">Cart</button>
+</form>
+    </div>
+  </div>
+</nav>
+
+    <!-- Line of links below the navbar -->
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+              <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Skincare
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'skincare' %}">Moisturizers</a></li>
+                            <li><a class="dropdown-item" href="#">Toners</a></li>
+                            <li><a class="dropdown-item" href="#">Serums</a></li>
+                        </ul>
+                    </li>
+        </li>
+        <li class="nav-item">
+         <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         Makeup
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'makeup' %}">Foundations&concelors</a></li>
+                            <li><a class="dropdown-item" href="#">Lipsticks</a></li>
+                            <li><a class="dropdown-item" href="#">EyeShadows</a></li>
+                        </ul>
+                    </li>
+
+        <li class="nav-item">
+             <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          HairCare
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Shampoos&Conditioners</a></li>
+                            <li><a class="dropdown-item" href="#">Serums</a></li>
+                            <li><a class="dropdown-item" href="#">Oils&Tools</a></li>
+                        </ul>
+                    </li>
+
+        <li class="nav-item">
+             <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Fragrances
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Men's</a></li>
+                            <li><a class="dropdown-item" href="{% url 'fragrance' %}">Womens</a></li>
+                            <li><a class="dropdown-item" href="#">Unisex</a></li>
+                        </ul>
+                    </li>
+        <li class="nav-item">
+                         <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                BodyCare
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">care1</a></li>
+                            <li><a class="dropdown-item" href="#">care2</a></li>
+                            <li><a class="dropdown-item" href="#">care3</a></li>
+                        </ul>
+                    </li>
+
+    </ul>
+{% block body %}
+
+{% endblock %}
+<footer id="sticky-footer" class=" flex-shrink-O py-2" >
+<div class="container text-center">
+<small>Copyright  B. Vishnu Samhitha, K. Niharika, K. Rohitha - KL University. All rights reserved </small>
+</div>
+</footer>
+<footer class="mt-5 pt-5 pb-3" style="background-color: black; color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <br>
+                <p>Email: heaven@gmail.com</p>
+                <p>Phone: +91 1234567890</p>
+                <p>Address: 123 Wood Street, Cityville, USA</p>
+            </div>
+            <div class="col-md-4">
+                <!-- Additional contact information or links can be added here -->
+            </div>
+            <div class="col-md-4">
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="#" style="color: white; text-decoration: none; font-weight: bold;">
+                        <img src="{% static 'images/instagram.jpg' %}" alt="Instagram" width="40" height="40">
+                    </a>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: bold;">
+                        <img src="{% static 'images/linkedin.jpg' %}" alt="LinkedIn" width="40" height="40">
+                    </a>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: bold;">
+                        <img src="{% static 'images/twitter.jpg' %}" alt="Twitter" width="40" height="40">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+    #sticky-footer{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right: 0;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-weight: 350;
+    }
+</style>
+</body>
+</html>
