@@ -1,135 +1,70 @@
-<!DOCTYPE html>
+{% extends 'Navbar.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>SPA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+        .card:hover {
+            transition: box-shadow 0.3s, transform 0.3s;
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
 
-        h2 {
-            color: #333;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-        }
-
-        .cart-item img {
-            max-width: 80px;
-            max-height: 80px;
-            margin-right: 10px;
-        }
-
-        .item-details {
-            flex: 1;
-        }
-
-        .item-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        .quantity-input {
-            width: 40px;
-            margin: 0 10px;
-            padding: 5px;
-            text-align: center;
-        }
-
-        .remove-btn {
-            background-color: #e74c3c;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .remove-btn:hover {
-            background-color: #c0392b;
-        }
-
-        .checkout-btn {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .checkout-btn:hover {
-            background-color: #2980b9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Shopping Cart</h2>
-
-    <div class="cart-item">
-        <img src="product1.jpg" alt="Product Image">
-        <div class="item-details">
-            <p>Product Name</p>
-            <p>Price: $19.99</p>
-        </div>
-        <div class="item-actions">
-            <input class="quantity-input" type="number" value="1" min="1">
-            <button class="remove-btn" onclick="removeItem()">Remove</button>
+{% block body %}
+    <br>
+ <div class="row mt-5">
+        <div class="col">
+            <h2>Shopping Cart</h2>
+            <ul id="cartItems"></ul>
+            <p id="totalPrice">Total: ₹0</p>
         </div>
     </div>
+    <div class="row">
+       <div class="card mb-3 ms-5" style="width: 20rem;">
+  <img src="{% static 'images/moistrizer1.webp' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <br><br><br><br><br>
+    <h5 class="card-title">Ponds Super Light Gel With Hydrated Glow</h5>
+    <p class="card-text">MRP:₹120 5% Off inclusive of all taxes</p>
+    <a href="{% url 'buynow' %}"class="btn btn-outline-dark">checkout</a>
+  </div>
+        </div>
 
-    <div class="cart-item">
-        <img src="product2.jpg" alt="Product Image">
-        <div class="item-details">
-            <p>Another Product</p>
-            <p>Price: $29.99</p>
-        </div>
-        <div class="item-actions">
-            <input class="quantity-input" type="number" value="2" min="1">
-            <button class="remove-btn" onclick="removeItem()">Remove</button>
-        </div>
+        <!-- Other card items -->
+
     </div>
 
-    <div class="cart-item">
-        <img src="product3.jpg" alt="Product Image">
-        <div class="item-details">
-            <p>Yet Another Product</p>
-            <p>Price: $39.99</p>
-        </div>
-        <div class="item-actions">
-            <input class="quantity-input" type="number" value="1" min="1">
-            <button class="remove-btn" onclick="removeItem()">Remove</button>
-        </div>
-    </div>
+    <!-- Cart section -->
 
-    <button class="checkout-btn">Proceed to Checkout</button>
-</div>
+{% endblock %}
 
 <script>
-    function removeItem() {
-        // Implement logic to remove the item from the cart
-        alert('Item removed from the cart!');
+    let cart = [];
+
+    function addToCart(itemName, itemPrice) {
+        cart.push({ name: itemName, price: itemPrice });
+        updateCart(); // Call the updateCart function after adding an item to the cart
+    }
+
+    function updateCart() {
+        const cartItemsElement = document.getElementById("cartItems");
+        const totalPriceElement = document.getElementById("totalPrice");
+        cartItemsElement.innerHTML = "";
+        let totalPrice = 0;
+        cart.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.name} - ₹${item.price}`;
+            cartItemsElement.appendChild(listItem);
+            totalPrice += item.price;
+        });
+        totalPriceElement.textContent = `Total: ₹${totalPrice.toFixed(2)}`; // Display total price with 2 decimal places
     }
 </script>
 

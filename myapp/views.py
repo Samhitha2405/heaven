@@ -114,8 +114,15 @@ def view_seller_products(request):
         return render(request, 'view_seller_products.html', {'product_details_list': product_details_list})
 
 
+
+from django.shortcuts import render
+from .models import ProductDetails  # Import the ProductDetails model
+
 def viewproducts(request):
-    return render(request,'viewproducts.html')
+    if request.method == 'GET':
+        product_details_list = ProductDetails.objects.all()
+        return render(request, 'viewproducts.html', {'product_details_list': product_details_list})
+
 def skincare(request):
     return render(request,'skincare.html')
 def makeup(request):

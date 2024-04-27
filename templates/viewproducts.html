@@ -7,7 +7,48 @@
 </head>
 <body>
 {% block body %}
-<h1>view products</h1>
+<div class="container mt-5">
+    <div class="row">
+        {% for product_details in product_details_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <img src="{{ product_details.product_image.url }}" class="card-img-top" alt="product image" style="width: 300px; height: 300px; object-fit: contain; transition: transform 0.3s;">
+                        <br><br>
+                        <h5 class="card-title">{{ product_details.product_name }}</h5>
+                        <p class="card-text">{{ product_details.description }}</p>
+                        <p class="card-text">category: {{ product_details.categories }}</p>
+                        <p class="card-text">price: {{ product_details.product_price }}</p>
+                        <a href="#" onclick="addToCart({{ product_details.id }})" class="btn btn-outline-dark">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<style>
+    /* Inline CSS for hover effect */
+    .card-img-top:hover {
+        transform: scale(1.1); /* Scale up the image on hover */
+    }
+</style>
 {% endblock %}
+<script>
+    function addToCart(productId) {
+        // Send an AJAX request to add the product to the cart
+        fetch(`/add-to-cart/${productId}/`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add product to cart');
+                }
+                // Redirect to the cart page
+                window.location.href = '/cart/';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to add product to cart. Please try again later.');
+            });
+    }
+</script>
 </body>
 </html>
